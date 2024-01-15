@@ -3,7 +3,7 @@
 
 ## Ссылки на итоговый проект
 
-IP-адрес 51.250.75.162
+IP-адрес 51.250.88.131
 
 Frontend https://lazya.diplom.nomoredomainsmonster.ru
 
