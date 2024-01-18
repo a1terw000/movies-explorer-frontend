@@ -5,10 +5,10 @@ import './MoviesCardList.css'
 export default function MoviesCardList() {
     const { pathname } = useLocation()
     return (
-        <div className='page__unique'>
-            <section className='moviesCardList'>
-                <ul className='cards'>
-                    <li className='card'><MoviesCard /></li>
+        <section className='moviesCardList'>
+            <div className='moviesCardList__elements'>
+                <ul className='moviesCardList__cards'>
+                    <li className='moviesCardList__card'><MoviesCard /></li>
                     <li className='card'><MoviesCard /></li>
                     <li className='card'><MoviesCard /></li>
                     <li className='card'><MoviesCard /></li>
@@ -18,7 +18,7 @@ export default function MoviesCardList() {
                     <li className='card'><MoviesCard /></li>
                 </ul>
                 {pathname === '/movies' && <button type='button' className='moviesCardList__buttonLoadingMoreCards'>Ещё</button>}
-            </section>
-        </div>
+            </div>
+        </section>
     )
 }

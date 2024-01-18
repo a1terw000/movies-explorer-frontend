@@ -4,9 +4,9 @@ import './SavedMovies.css'
 
 export default function SavedMovies() {
     return (
-        <div className='page__unique'>
+        <>
             <SearchForm />
             <MoviesCardList />
-        </div>
+        </>
     )
 }

@@ -23,8 +23,8 @@
     font-size: 13px;
     font-weight: 400;
     line-height: 18px;
-    margin: 0;
-    padding: 0 30px 0 49px;
+    margin: 0 30px 0 0;
+    padding: 0 0 0 49px;
     display: inline-block;
     position: relative;
     cursor: pointer;
@@ -67,6 +67,9 @@
     .filterCheckbox {
         padding-left: 19px;
     }
+    .checkbox__text {
+        margin-right: 20px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -76,5 +79,7 @@
     }
     .checkbox__text {
         padding-right: 0;
+        font-size: 11px;
+        line-height: 18px;
     }
 }

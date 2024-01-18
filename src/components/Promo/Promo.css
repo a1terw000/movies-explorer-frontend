@@ -1,4 +1,8 @@
 .promo {
+    background: #073042;
+}
+
+.promo__elements {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -15,6 +19,7 @@
     margin: 0 0 0 70px;
     padding: 0;
     width: 626px;
+    letter-spacing: -1.5px  ;
 }
 
 .promo__image {
@@ -26,14 +31,14 @@
 }
 
 @media screen and (max-width:1279px) {
-    .promo {
+    .promo__elements {
         align-items: center;
         padding: 0 0 70px 0;
     }
     .promo__title {
         margin: 300px 0 140px 0;
         text-align: center;
-        width: 680px;
+        max-width: 680px;
     }
     .promo__image {
         margin: 0;
@@ -44,6 +49,12 @@
 
 
 @media screen and (max-width:767px) {
+    .promo__elements {
+        padding: 0 0 40px 0;
+    }
+    .promo__title {
+        margin: 183px 0 60px 0;
+    }
     .promo__title {
         font-size: 31px;
         line-height: 39px;

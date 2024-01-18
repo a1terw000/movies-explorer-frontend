@@ -2,8 +2,8 @@ import './AboutProject.css'
 
 export default function AboutProject() {
     return (
-        <div className='page__unique'>
-            <section className='aboutProject'>
+        <section className='aboutProject'>
+            <div className='aboutProject__elements'>
                 <h2 className='aboutProject__title'>О проекте</h2>
                 <ul className='aboutProject__list' >
                     <li className='aboutProject__item aboutProject__item_type_title'>Дипломный проект включал 5 этапов</li>
@@ -17,7 +17,7 @@ export default function AboutProject() {
                     <span className='aboutProject__text'>Back-end</span>
                     <span className='aboutProject__text'>Front-end</span>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     )
 }

@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import CurrentUserContext from '../contexts/CurrentUserContext'
 import './App.css'
 import Footer from './Footer/Footer'
-import Header from './Header/Header'
+import HeaderUnAuth from './HeaderUnAuth/HeaderUnAuth'
 import Main from './Main/Main'
 import Register from './Register/Register'
 import Login from './Login/Login'
@@ -10,6 +10,7 @@ import Profile from './Profile/Profile'
 import Movies from './Movies/Movies'
 import SavedMovies from './SavedMovies/SavedMovies'
 import ErrorPage from './ErrorPage/ErrorPage'
+import HeaderAuth from './HeaderAuth/HeaderAuth'
 
 export default function App() {
     return (
@@ -17,51 +18,45 @@ export default function App() {
             <div className="page">
                 <Routes>
                     <Route path='/' element={
-                        <div className='page__container'>
-                            <Header />
+                        <>
+                            <HeaderUnAuth />
                             <Main />
                             <Footer />
-                        </div>
+                        </>    
                     } />
                     <Route path='/signup' element={
-                        <div className='page__container'>
-                            <Register />
-                        </div>
+                        <Register />
                     }
                     />
                     <Route path='/signin' element={
-                        <div className='page__container'>
-                            <Login />
-                        </div>
+                        <Login />
                     }
                     />
                     <Route path='/profile' element={
-                        <div className='page__container'>
-                            <Header disabledColor={true}/>
+                        <>
+                            <HeaderAuth />
                             <Profile />
-                        </div>
+                        </> 
                     }
                     />
                     <Route path='/movies' element={
-                        <div className='page__container'>
-                            <Header disabledColor={true}/>
+                        <>
+                            <HeaderAuth />
                             <Movies />
                             <Footer />
-                        </div>
+                        </>
                     }
                     />
                     <Route path='/saved-movies' element={
-                        <div className='page__container'>
-                            <Header disabledColor={true}/>
+                        <>
+                            <HeaderAuth />
                             <SavedMovies />
                             <Footer />
-                        </div>
+                        </>
                     }
                     />
                     <Route path='*' element={
-                        <div className='page__container'>
-                            <ErrorPage />
-                        </div>
+                        <ErrorPage />
                     }
                     />
                 </Routes>

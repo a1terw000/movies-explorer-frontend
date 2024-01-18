@@ -4,9 +4,9 @@ import './Movies.css'
 
 export default function Movies() {
     return (
-        <div className='page__unique'>
+        <>
             <SearchForm />
             <MoviesCardList />
-        </div>
+        </>
     )
 }

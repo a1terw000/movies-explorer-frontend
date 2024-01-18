@@ -2,8 +2,8 @@ import './Techs.css'
 
 export default function Techs() {
     return (
-        <div className='page__techs'>
-            <section className='techs'>
+        <section className='techs'>
+            <div className='techs__elements'>
                 <p className='techs__text'>Технологии</p>
                 <h2 className='techs__title'>7 технологий</h2>
                 <p className='techs__subtitle'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
@@ -16,7 +16,7 @@ export default function Techs() {
                     <li className='techs__item'>Express.js</li>
                     <li className='techs__item'>mongoDB</li>
                 </ul>
-            </section>
-        </div>
+            </div>
+        </section>
     )
 }

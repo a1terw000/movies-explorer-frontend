@@ -22,7 +22,7 @@
     font-weight: 500;
     line-height: 29px;
     margin: 0;
-    padding: 75px 0 125px 0;
+    padding: 74px 0 125px 0;
     text-align: center;
 }
 
@@ -52,6 +52,12 @@
     font-size: 11px;
     font-weight: 400;
     line-height: 13px;
+}
+
+.profile__input_hover:hover {
+    opacity: 0.7;
+    transition: 0.2s;
+    cursor: pointer;
 }
 
 .profile__input::placeholder {
@@ -100,6 +106,11 @@
     width: min-content;
 }
 
+.profile__edit-button:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+}
+
 .profile__logOut-button {
     padding: 0;
     margin: 0 auto;
@@ -114,15 +125,17 @@
     width: min-content;
 }
 
+.profile__logOut-button:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+}
+
 @media screen and (max-width: 1023px) {
     .profile__title {
-        padding: 0 0 96px 0;
+        padding: 236px 0 96px 0;
     }
     .profile__edit-button {
         margin-top: 210px;
-    }
-    .page__auth {
-        padding: 236px 0 270px 0;
     }
 }
 
@@ -131,12 +144,41 @@
         max-width: calc(100% - 60px);
     }
     .profile__title {
-        padding: 0 0 96px 0;
+        padding: 70px 0 80px 0;
     }
     .profile__edit-button {
-        margin-top: 210px;
+        margin-top: 379px;
     }
-    .page__auth {
-        padding: 70px 0 40px 0;
-    }
+}
+
+.profile__editUserDataButton {
+    display: none;
+    width: 100%;
+    min-height: 45px;
+    background-color: #4285F4;
+    color: white;
+    padding: 0;
+    margin: 220px 0 0 0;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 500;
+}
+
+.profile__editUserDataButton_active {
+    display: block;
+}
+
+.profile__editUserDataButton:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+}
+
+.profile__logOut-button_none {
+    display: none;
+}
+
+.profile__edit-button_none {
+    display: none;
 }
