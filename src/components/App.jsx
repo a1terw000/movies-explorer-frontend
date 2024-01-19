@@ -14,7 +14,7 @@ import HeaderAuth from './HeaderAuth/HeaderAuth'
 
 export default function App() {
     return (
-        <CurrentUserContext.Provider>
+        <CurrentUserContext.Provider value={''}>
             <div className="page">
                 <Routes>
                     <Route path='/' element={

@@ -9,7 +9,7 @@ export default function Register() {
     return (
         <section className='register'>
             <div className='register__elements'>
-                <Link to={'/'}><img src={registerLogo} alt="Логотип сайта" className="register__logo" /></Link>
+                <Link to={'/'} className='register__link-to-home'><img src={registerLogo} alt="Логотип сайта" className="register__logo" /></Link>
                 <h2 className='register__title'>Добро пожаловать!</h2>
                 <form className='register__form'>
                     <fieldset className="register__fieldset">

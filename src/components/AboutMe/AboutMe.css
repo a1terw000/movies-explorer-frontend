@@ -124,6 +124,8 @@
     }
     .aboutMe__container {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     .aboutMe__title {
         font-size: 18px;
@@ -153,5 +155,8 @@
     }
     .aboutMe__image {
         display: none;
+    }
+    .aboutMe__link {
+        margin-top: 40px;
     }
 }

@@ -1,23 +1,23 @@
 import './HeaderUnAuth.css';
 import headerLogo from '../../images/main__logo.svg'
-import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
+// import { useState } from 'react';
 
 export default function HeaderUnAuth() {
-    const {pathname} = useLocation()
-    const [isOpen, setIsOpen] = useState(false)
-    function clickOnMenu() {
-        if(isOpen) {
-            setIsOpen(false)
-        } else {
-            setIsOpen(true)
-        }
-    }
+    // const {pathname} = useLocation()
+    // const [isOpen, setIsOpen] = useState(false)
+    // function clickOnMenu() {
+    //     if(isOpen) {
+    //         setIsOpen(false)
+    //     } else {
+    //         setIsOpen(true)
+    //     }
+    // }
     return (
         <header className='header-un-auth'>
             <div className='header-un-auth__content'>
                 <Link to={'/'} className='header-un-auth__home'><img src={headerLogo} alt="Логотип сайта" /></Link>
-                <nav className={`header-un-auth__container ${isOpen ? 'header-un-auth__container_open' : ''}`}>
+                {/* <nav className={`header-un-auth__container ${isOpen ? 'header-un-auth__container_open' : ''}`}>
                     <div className='header-un-auth__container-account'>
                         <div className='header-un-auth__container-account_type_films'>
                             <Link to={'/'} className='header-un-auth__link-to-home'>Главная</Link>
@@ -31,7 +31,7 @@ export default function HeaderUnAuth() {
                         <button type='button' className='header-un-auth__button-close-menu' onClick={clickOnMenu}></button>
                     </div>
                 </nav>
-                <button type='button' className='header-un-auth__button-open-menu' onClick={clickOnMenu}></button>
+                <button type='button' className='header-un-auth__button-open-menu' onClick={clickOnMenu}></button> */}
                 <nav className='header-un-auth__container-auth'>
                     <Link className='header-un-auth__signup' to={'/signup'}>Регистрация</Link>
                     <Link className='header-un-auth__signin' to={'/signin'}>Войти</Link>

@@ -2,7 +2,7 @@
     max-width: 1280px;
     margin: 0 auto;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
 }
@@ -12,6 +12,12 @@
     flex-direction: column;
     max-width: 396px;
     margin: 0 auto;
+}
+
+.register__link-to-home {
+    width: 38px;
+    height: 38px;
+    margin-top: 70px;
 }
 
 .register__logo {
@@ -112,7 +118,7 @@
     font-weight: 400;
     line-height: 17px;
     margin: 0 auto;
-    padding-top: 16px;
+    padding: 16px 0 70px 0;
 }
 
 .register__error-message {
@@ -123,6 +129,15 @@
     padding-top: 6px;
 }
 
+@media screen and (max-width: 1023px) {
+    .register__signin {
+        padding-bottom: 232px;
+    }
+    .register__link-to-home {
+        margin-top: 232px;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .register {
         max-width: calc(100% - 60px);
@@ -130,6 +145,9 @@
     }
     .register__title {
         padding: 50px 0 80px 0;
+    }
+    .register__elements {
+        align-items: center;
     }
     .register__fieldset {
         width: 100%;
@@ -140,8 +158,11 @@
         margin-top: 240px;
     }
     .register__signin {
-        padding-top: 14px;
+        padding: 14px 0 30px 0;
         font-size: 12px;
         line-height: 14.5px;
+    }
+    .register__link-to-home {
+        margin-top: 56px;
     }
 }

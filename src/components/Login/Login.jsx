@@ -8,7 +8,7 @@ export default function Login() {
     return (
         <section className='login'>
             <div className='login__elements'>
-                <Link to={'/'}><img src={loginLogo} alt="Логотип сайта" className="login__logo" /></Link>
+                <Link to={'/'} className='login__link-to-home'><img src={loginLogo} alt="Логотип сайта" className="login__logo" /></Link>
                 <h2 className='login__title'>Рады видеть!</h2>
                 <form className='login__form'>
                     <fieldset className="login__fieldset">
