@@ -6,9 +6,9 @@ export default function LikeButton() {
     return (
         <div>
             {pathname === '/movies' ?
-                <button className='moviesCard__likeButton'><div className='moviesCard__likeIcon'></div></button>
+                <button className='moviesCard__likeButton' aria-label="Добавить фильм в сохранённые"></button>
                 :
-                <button className='moviesCard__likeButton'><div className='moviesCard__trashIcon'></div></button>
+                <button className='moviesCard__trashButton' aria-label="Удалить фильм из сохранённых"></button>
             }
         </div>
     )

@@ -15,6 +15,8 @@
 
 .header-un-auth__home {
     margin-left: 70px;
+    width: 38px;
+    height: 38px;
 }
 
 .header-un-auth__home:hover {
@@ -22,26 +24,7 @@
     transition: 0.2s;
 }
 
-.header-un-auth__link-to-home {
-    display: none;
-    margin: 0;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 22px;
-    text-decoration: none;
-    color: white;
-    align-items: center;
-}
-
-.header-un-auth__link-to-home:hover {
-    opacity: 0.7;
-    transition: 0.2s;
-}
-
 @media screen and (max-width: 1023px) {
-    .header-un-auth__link-to-home {
-        display: flex;
-    }
     .header-un-auth__home {
         margin-left: 30px;
     }
@@ -53,137 +36,10 @@
     }
 }
 
-.header-un-auth__container-auth {
+.header-un-auth__container {
     display: flex;
     align-items: center;
     padding-right: 70px;
-}
-
-.header-un-auth__container {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.header-un-auth__button-open-menu {
-    display: none;
-    background-image: url(../../images/menuIcon.svg);
-    width: 38px;
-    height: 38px;
-    background-size: cover;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-}
-
-.header-un-auth__button-open-menu:hover {
-    opacity: 0.7;
-    transition: 0.2s;
-}
-
-.header-un-auth__button-close-menu {
-    display: none;
-    width: 30px;
-    height: 30px;
-    background-size: cover;
-    background-image: url(../../images/menuCloseIcon.svg);
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    position: absolute;
-    padding: 0;
-    top: 22px;
-    right: 22px;
-}
-
-.header-un-auth__button-close-menu:hover {
-    opacity: 0.7;
-    transition: 0.2s;
-}
-
-.header-un-auth__container-account {
-    display: flex;
-}
-
-.header-un-auth__container-profile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-right: 45px;
-}
-
-.header-un-auth__container-films {
-    display: flex;
-    align-items: center;
-    padding-left: 45px;
-}
-
-.header-un-auth__account {
-    text-decoration: none;
-    color: white;
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 12px;
-    margin-right: 7px;
-}
-
-.header-un-auth__account:hover {
-    opacity: 0.7;
-    transition: 0.2s;
-}
-
-.header-un-auth__background {
-    background-image: url(../../images/background.svg);
-    width: 26px;
-    height: 26px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.header-un-auth__account-icon {
-    background-image: url(../../images/account__Icon.svg);
-    width: 10px;
-    height: 10px;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.header-un-auth__link-to-films {
-    text-decoration: none;
-    color: white;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 18px;
-    margin-right: 16px;
-}
-
-.header-un-auth__link-to-films:hover {
-    opacity: 0.7;
-    transition: 0.2s;
-    cursor: pointer;
-}
-
-@media screen and (max-width: 1023px) {
-    .header-un-auth__link-to-films {
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 22px;
-    }
-}
-
-.header-un-auth__link-to-films_type_active {
-    font-weight: 500;
-}
-
-@media screen and (max-width: 1023px) {
-    .header-un-auth__link-to-films_type_active {
-        padding-bottom: 4px;
-        border-bottom: 2px solid white;
-    }
 }
 
 .header-un-auth__signup {
@@ -223,81 +79,11 @@
 
 @media screen and (max-width: 1023px) {
     .header-un-auth__container {
-        visibility: hidden;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        flex-direction: column;
-        top: 0;
-        right: 0;
-        overflow: hidden;
-        background-color: rgba(0, 0, 0, .3);
-        z-index: 1;
-    }
-    .header-un-auth__container-auth {
         padding-right: 30px;
-    }
-    .header-un-auth__container_open {
-        visibility: visible;
-    }
-    .header-un-auth__button-open-menu {
-        display: block;
-        
-    }
-    .header-un-auth__container-films {
-        flex-direction: column;
-        padding: 159px 0 0 0;
-    }
-    .header-un-auth__link-to-films {
-        margin: 28px 0 0 0;
-    }
-    .header-un-auth__container-profile {
-        padding: 0 0 90px 0;
-    }
-    .header-un-auth__button-close-menu {
-        display: block;
-    }
-    .header-un-auth__container-account {
-        width: 520px;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        right: 0;
-        background-color: #202020;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .header-un-auth__container-account {
-        width: 100%;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        right: 0;
-        background-color: #202020;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    .header-un-auth__button-open-menu {
-        width: 38px;
-        height: 38px;
-        background-size: cover;
-        margin-right: 14px;
-    }
-    .header-un-auth__button-close-menu {
-        top: 14px;
-        right: 14px;
-    }
-    .header-un-auth__container-films {
-        padding-top: 144px;
-    }
-    .header-un-auth__link-to-films {
-        margin-top: 24px;
-    }
     .header-un-auth__signin {
         font-size: 10px;
         width: 54px;
@@ -307,7 +93,7 @@
         font-size: 10px;
         margin-right: 14px;
     }
-    .header-un-auth__container-auth {
+    .header-un-auth__container {
         padding-right: 14px;
     }
 }
