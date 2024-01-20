@@ -108,14 +108,14 @@
     display: flex;
 }
 
-.header-un-auth__container-account_type_profile {
+.header-un-auth__container-profile {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-right: 45px;
 }
 
-.header-un-auth__container-account_type_films {
+.header-un-auth__container-films {
     display: flex;
     align-items: center;
     padding-left: 45px;
@@ -244,14 +244,14 @@
         display: block;
         
     }
-    .header-un-auth__container-account_type_films {
+    .header-un-auth__container-films {
         flex-direction: column;
         padding: 159px 0 0 0;
     }
     .header-un-auth__link-to-films {
         margin: 28px 0 0 0;
     }
-    .header-un-auth__container-account_type_profile {
+    .header-un-auth__container-profile {
         padding: 0 0 90px 0;
     }
     .header-un-auth__button-close-menu {
@@ -292,7 +292,7 @@
         top: 14px;
         right: 14px;
     }
-    .header-un-auth__container-account_type_films {
+    .header-un-auth__container-films {
         padding-top: 144px;
     }
     .header-un-auth__link-to-films {
