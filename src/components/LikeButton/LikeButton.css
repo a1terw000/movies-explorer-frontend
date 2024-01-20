@@ -1,0 +1,41 @@
+.moviesCard__likeButton {
+    background-image: url(../../images/likeButton.svg);
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.moviesCard__likeButton:hover {
+    opacity: 0.8;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.moviesCard__likeButton_active {
+    background-image: url(../../images/likeButtonActive.svg);
+}
+
+.moviesCard__trashButton {
+    background-image: url(../../images/trashButton.svg);
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
