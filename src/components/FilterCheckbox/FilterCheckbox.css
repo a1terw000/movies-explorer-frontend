@@ -68,7 +68,7 @@
         padding-left: 19px;
     }
     .checkbox__text {
-        margin-right: 20px;
+        margin: 0 20px 0 0;
     }
 }
 
@@ -78,8 +78,11 @@
         padding: 0;
     }
     .checkbox__text {
-        margin: 70px 0 0 0;
         font-size: 11px;
         line-height: 18px;
+        margin: 0;
+    }
+    .filterCheckbox {
+        padding-top: 34px;
     }
 }
