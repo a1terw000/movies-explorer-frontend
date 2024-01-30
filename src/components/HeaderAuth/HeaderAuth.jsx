@@ -1,4 +1,5 @@
 import './HeaderAuth.css';
+import '../HeaderUnAuth/HeaderUnAuth.css'
 import headerLogo from '../../images/main__logo.svg'
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
@@ -14,7 +15,7 @@ export default function HeaderAuth() {
         }
     }
     return (
-        <header className='header-auth'>
+        <header className={`header-auth ${pathname === '/' ? 'header-un-auth' : ''}`}>
             <div className='header-auth__content'>
                 <Link to={'/'} className='header-auth__home'><img src={headerLogo} alt="Логотип сайта" /></Link>
                 <nav className={`header-auth__container ${isOpen ? 'header-auth__container_open' : ''}`}>

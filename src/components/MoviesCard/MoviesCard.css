@@ -1,6 +1,7 @@
 .moviesCard {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
 }
 
 .moviesCard__image {
@@ -14,12 +15,14 @@
     padding: 10px 0 25px 0;
     justify-content: space-between;
     align-items: center;
+    min-height: 32px;
 }
 
 .moviesCard__name {
     font-size: 13px;
     font-weight: 500;
     line-height: 16px;
+    max-width: 226px;
     margin: 0;
 }
 

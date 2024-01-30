@@ -10,7 +10,7 @@
     max-width: calc(100% - 140px);
     width: 100%;
     flex-direction: column;
-    padding: 79px 0 20px 0;
+    padding: 159px 0 20px 0;
 }
 
 @media screen and (max-width: 1023px) {
@@ -78,6 +78,7 @@
 @media screen and (max-width: 767px) {
     .footer__elements {
         max-width: calc(100% - 20px);
+        padding-top: 220px;
     }
     .footer__title {
         font-size: 12px;
