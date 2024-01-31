@@ -141,7 +141,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'https://api.lazya.diplom.nomoredomainsmonster.ru',
 });
 
 export default mainApi
