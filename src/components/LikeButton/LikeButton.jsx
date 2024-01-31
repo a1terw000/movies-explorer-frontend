@@ -8,11 +8,11 @@ export default function LikeButton({ movie, savedMovie, handleLikeMovie, onDelet
 
     useEffect(() => {
         if (pathname === '/movies')
-          setIsLiked(savedMovies.some((film) => movie.id === film.movieId))
-      }, [savedMovies, movie, setIsLiked, pathname])
+            setIsLiked(savedMovies.some((film) => movie.id === film.movieId))
+    }, [savedMovies, movie, setIsLiked, pathname])
 
     function handleLike() {
-        if(savedMovies.some((film) => movie.id === film.id)) {
+        if (savedMovies.some((film) => movie.id === film.id)) {
             handleLikeMovie(movie)
             setIsLiked(true)
         } else {
@@ -20,7 +20,7 @@ export default function LikeButton({ movie, savedMovie, handleLikeMovie, onDelet
             setIsLiked(false)
         }
     }
-    
+
     return (
         <div>
             {pathname === '/movies' ?

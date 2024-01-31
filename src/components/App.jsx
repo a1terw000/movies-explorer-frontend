@@ -19,9 +19,10 @@ export default function App() {
     const [filteredMovies, setFilteredMovies] = useState([]) // отфильтрованные фильмы
     const [savedFilteredMovies, setSavedFilteredMovies] = useState([]) // отфильтрованные фильмы
     const [isCheckboxState, setIsCheckboxState] = useState(false) // отслеживаем состояние чекбокса короткометражек
+    const [isSavedCheckboxState, setIsSavedCheckboxState] = useState(false) // отслеживаем состояние чекбокса сохранённых короткометражек
     const [valueInput, setValueInput] = useState('') // строка из инпута поиска фильмов
     const [valueInputSavedMovies, setValueInputSavedMovies] = useState('') // строка из инпута сохранённых фильмов
-    const [isLoading, setIsLoading] = useState(false) // для прелоадера
+    const [isLoading, setIsLoading] = useState(true) // для прелоадера
     const [loggedIn, setLoggedIn] = useState(false) // проверка логирования
     const [currentUser, setCurrentUser] = useState({}) // юзер который авторизовался
     const [savedMovies, setSavedMovies] = useState([]) // массив лайкнутых юзером фильмов
@@ -35,7 +36,6 @@ export default function App() {
 
     // Регистрация + Аунтефикация + Профиль
     useEffect(() => {
-        setIsLoading(true)
         if (jwt) {
             Promise.all([mainApi.getPresentUser(jwt), mainApi.getSavedMovies(jwt)])
                 .then(([userData, moviesData]) => {
@@ -52,9 +52,13 @@ export default function App() {
             setIsLoading(false)
             localStorage.clear()
             setFilteredMovies([])
+            setSavedFilteredMovies([])
             setValueInput('')
+            setValueInputSavedMovies('')
             setIsCheckboxState(false)
+            setIsSavedCheckboxState(false)
             setAllMovies([])
+            setCurrentUser({})
         }
     }, [loggedIn, jwt])
 
@@ -83,10 +87,10 @@ export default function App() {
                 setLoggedIn(false)
                 setRegisterError(true)
             })
-        }
-        
-        function editUserData(name, email) {
-            mainApi.editUserData(name, email, localStorage.jwt)
+    }
+
+    function editUserData(name, email) {
+        mainApi.editUserData(name, email, localStorage.jwt)
             .then((res) => {
                 setIsResult(true)
                 setCurrentUser(res)
@@ -96,9 +100,9 @@ export default function App() {
                 setProfileError(true)
             })
     }
-    
+
     useEffect(() => {
-        if(pathname !== '/profile') {
+        if (pathname !== '/profile') {
             setIsResult(false)
             setProfileError(false)
         }
@@ -107,7 +111,16 @@ export default function App() {
     function logOut() {
         localStorage.clear()
         setLoggedIn(false)
-        navigate('/')
+        setIsLoading(false)
+        setFilteredMovies([])
+        setSavedFilteredMovies([])
+        setValueInput('')
+        setValueInputSavedMovies('')
+        setIsCheckboxState(false)
+        setIsSavedCheckboxState(false)
+        setAllMovies([])
+        setCurrentUser({})
+        navigate('/')   
     }
 
     // Поиск фильмов
@@ -125,9 +138,11 @@ export default function App() {
     }
 
     const filter = useCallback((movies, inputValue, checkboxState) => {
+        console.log(isCheckboxState)
         localStorage.setItem('movies', JSON.stringify(movies))
         localStorage.setItem('inputValue', JSON.stringify(inputValue))
         localStorage.setItem('checkboxState', JSON.stringify(checkboxState))
+        console.log(JSON.parse(localStorage.getItem('checkboxState')))
         setFilteredMovies(isCheckboxState ? filterShortMovies(filterMovies(movies, inputValue)) : filterMovies(movies, inputValue))
         setValueInput(inputValue)
     }, [isCheckboxState])
@@ -162,19 +177,19 @@ export default function App() {
     }, [filter])
 
     const filterSavedMovies = useCallback((movies, inputValue) => {
-        setSavedFilteredMovies(isCheckboxState ? filterShortMovies(filterMovies(movies, inputValue)) : filterMovies(movies, inputValue))
+        setSavedFilteredMovies(isSavedCheckboxState ? filterShortMovies(filterMovies(movies, inputValue)) : filterMovies(movies, inputValue))
         setValueInputSavedMovies(inputValue)
-    }, [isCheckboxState])
+    }, [isSavedCheckboxState])
 
     function searchSavedMovies(valueInputSavedMovies) {
-        filterSavedMovies(savedMovies, valueInputSavedMovies, isCheckboxState)
+        filterSavedMovies(savedMovies, valueInputSavedMovies, isSavedCheckboxState)
     }
-    
+
     useEffect(() => {
-        console.log(valueInputSavedMovies)
         setValueInputSavedMovies(valueInputSavedMovies)
-        filterSavedMovies(savedMovies, valueInputSavedMovies, isCheckboxState)
-    }, [filterSavedMovies, savedMovies, valueInputSavedMovies, isCheckboxState])
+        setIsSavedCheckboxState(isSavedCheckboxState)
+        filterSavedMovies(savedMovies, valueInputSavedMovies, isSavedCheckboxState)
+    }, [filterSavedMovies, savedMovies, valueInputSavedMovies, isSavedCheckboxState])
 
 
     // лайк и удаление фильма
@@ -188,7 +203,7 @@ export default function App() {
                 console.error(err)
             })
     }
-    
+
     function handleLikeMovie(movie) {
         const isLike = savedMovies.some((film) => movie.id === film.movieId)
         const deleteThisFilm = savedMovies.filter((film) => {
@@ -264,10 +279,10 @@ export default function App() {
                                     loggedIn={loggedIn}
                                     isLoading={isLoading}
                                     searchMovies={searchSavedMovies}
-                                    setIsCheckboxState={setIsCheckboxState}
-                                    isCheckboxState={isCheckboxState}
+                                    setIsCheckboxState={setIsSavedCheckboxState}
+                                    isCheckboxState={isSavedCheckboxState}
                                     movies={savedFilteredMovies}
-                                    valueInput={valueInput}
+                                    valueInput={valueInputSavedMovies}
                                     onDeleteMovie={onDeleteMovie}
                                 />
                             }

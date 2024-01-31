@@ -2,19 +2,21 @@ import './Register.css'
 import { Link } from 'react-router-dom';
 import registerLogo from '../../images/main__logo.svg'
 import useFormValidation from '../../hooks/useFormValidation';
-import { useEffect } from 'react';
-import { registerIncorrectError } from '../../utils/constants'
+import { useEffect, useState } from 'react';
+import { EmailRegex, RegisterIncorrectError } from '../../utils/constants.js'
 
 export default function Register({ handleRegister, registerError, setRegisterError }) {
     const { values, errors, isValid, handleChange } = useFormValidation()
+    const [buttonDisabledWhenSubmit, setButtonDisabledWhenSubmit] = useState(false)
 
     useEffect(() => {
         setRegisterError('')
+        setButtonDisabledWhenSubmit(false)
     }, [setRegisterError, values])
 
     function onRegister(evt) {
         evt.preventDefault()
-        console.log(registerError)
+        setButtonDisabledWhenSubmit(true)
         handleRegister(values.name, values.email, values.password)
     }
     return (
@@ -29,7 +31,7 @@ export default function Register({ handleRegister, registerError, setRegisterErr
                         <span className='register__error-message'>{errors.name}</span>
 
                         <span className='register__name-input'>E-mail</span>
-                        <input type="email" name='email' id='email' className={`register__input ${errors.email ? 'register__input_error' : ''}`} required onChange={handleChange} placeholder='Введите ваш e-mail' />
+                        <input type="email" name='email' id='email' className={`register__input ${errors.email ? 'register__input_error' : ''}`} required onChange={handleChange} placeholder='Введите ваш e-mail' pattern={EmailRegex}/>
                         <span className='register__error-message'>{errors.email}</span>
 
                         <span className='register__name-input'>Пароль</span>
@@ -37,8 +39,8 @@ export default function Register({ handleRegister, registerError, setRegisterErr
                         <span className='register__error-message'>{errors.password}</span>
                     </fieldset>
                     <fieldset className='register__fieldset-submit'>
-                        {registerError ? <span className='register__submit-error'>{registerIncorrectError}</span> : '' }
-                        <button className={`register__submit ${!isValid || registerError ? 'register__submit_disabled' : ''}`} disabled={!isValid} type='submit'>Зарегистрироваться</button>
+                        {registerError ? <span className='register__submit-error'>{RegisterIncorrectError}</span> : '' }
+                        <button className={`register__submit ${!isValid || registerError || buttonDisabledWhenSubmit ? 'register__submit_disabled' : ''}`} disabled={!isValid || buttonDisabledWhenSubmit} type='submit'>Зарегистрироваться</button>
                     </fieldset>
                 </form>
                 <p className="register__signin">Уже зарегистрированы?<Link className="register__login-link" to="/signin">Войти</Link></p>

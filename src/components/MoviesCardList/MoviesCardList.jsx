@@ -17,7 +17,7 @@ export default function MoviesCardList({ movies, showMoreFilms, initialMoviesLis
                             movies.slice(0, initialMoviesList).map((movie) => {
                                 return (
                                     <li className='moviesCardList__card' key={movie.id}>
-                                        <MoviesCard movie={movie} handleLikeMovie={handleLikeMovie} savedMovies={savedMovies}/>
+                                        <MoviesCard movie={movie} handleLikeMovie={handleLikeMovie} savedMovies={savedMovies} />
                                     </li>
                                 )
                             })

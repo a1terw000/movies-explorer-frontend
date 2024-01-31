@@ -2,18 +2,21 @@ import './Login.css'
 import { Link } from 'react-router-dom';
 import loginLogo from '../../images/main__logo.svg'
 import useFormValidation from '../../hooks/useFormValidation';
-import { useEffect } from 'react';
-import { loginIncorrectError } from '../../utils/constants'
+import { useEffect, useState } from 'react';
+import { EmailRegex, LoginIncorrectError } from '../../utils/constants.js'
 
 export default function Login({ handleLogin, loginError, setLoginError }) {
     const { values, errors, handleChange, isValid } = useFormValidation()
+    const [buttonDisabledWhenSubmit, setButtonDisabledWhenSubmit] = useState(false)
 
     useEffect(() => {
         setLoginError(false)
+        setButtonDisabledWhenSubmit(false)
     }, [setLoginError, values])
     
     function onLogin(evt) {
         evt.preventDefault()
+        setButtonDisabledWhenSubmit(true)
         handleLogin(values.email, values.password)
     }
     return (
@@ -24,7 +27,7 @@ export default function Login({ handleLogin, loginError, setLoginError }) {
                 <form className='login__form' onSubmit={onLogin} noValidate>
                     <fieldset className="login__fieldset-input">
                         <p className='login__name-input'>E-mail</p>
-                        <input onChange={handleChange} type="email" name="email" className={`login__input ${errors.email ? 'login__input_error' : ''}`} required placeholder='Введите ваш e-mail' />
+                        <input onChange={handleChange} type="email" name="email" className={`login__input ${errors.email ? 'login__input_error' : ''}`} required placeholder='Введите ваш e-mail' pattern={EmailRegex}/>
                         <span className='login__error-message'>{errors.email}</span>
 
                         <p className='login__name-input'>Пароль</p>
@@ -32,8 +35,8 @@ export default function Login({ handleLogin, loginError, setLoginError }) {
                         <span className='login__error-message'>{errors.password}</span>
                     </fieldset>
                     <fieldset className='login__fieldset-submit'>
-                        {loginError ? <span className='login__submit-error'>{loginIncorrectError}</span> : ''}
-                        <button disabled={!isValid} className={`login__submit ${!isValid || loginError ? 'login__submit_disabled' : ''}`} type='submit'>Войти</button>
+                        {loginError ? <span className='login__submit-error'>{LoginIncorrectError}</span> : ''}
+                        <button disabled={!isValid || buttonDisabledWhenSubmit} className={`login__submit ${!isValid || loginError || buttonDisabledWhenSubmit ? 'login__submit_disabled' : ''}`} type='submit'>Войти</button>
                     </fieldset>
                 </form>
                 <p className="login__signup">Ещё не зарегистрированы?<Link className="login__register-link" to="/signup">Регистрация</Link></p>

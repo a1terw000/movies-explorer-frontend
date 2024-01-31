@@ -5,26 +5,27 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import Preloader from '../Preloader/Preloader'
 import SearchForm from '../SearchForm/SearchForm'
 import './Movies.css'
+import { ComputerInitialMovies, ComputerWidth, NotebookInitialMovies, NotebookWidth, TabletInitialMovies, TelephoneInitialMovies, TelephoneWidth, openMoviesOnComputer, openMoviesOnNotebook, openMoviesOnTelephone } from '../../utils/constants'
 
-export default function Movies({ isLoading, searchMovies, setIsCheckboxState, isCheckboxState, movies, valueInput, savedMovies, handleLikeMovie, onDeleteMovie}) {
+export default function Movies({ isLoading, searchMovies, setIsCheckboxState, isCheckboxState, movies, valueInput, savedMovies, handleLikeMovie, onDeleteMovie }) {
     const [initialMoviesList, setInitialMoviesList] = useState(0)
-    
+
     function loadingInitialMovies() {
         const currentWidth = window.innerWidth
-        if (currentWidth > 1279) {
-            setInitialMoviesList(16)
-        } else if (currentWidth > 1023) {
-            setInitialMoviesList(12)
-        } else if (currentWidth > 767) {
-            setInitialMoviesList(8)
+        if (currentWidth > ComputerWidth) {
+            setInitialMoviesList(ComputerInitialMovies)
+        } else if (currentWidth > NotebookWidth) {
+            setInitialMoviesList(NotebookInitialMovies)
+        } else if (currentWidth > TelephoneWidth) {
+            setInitialMoviesList(TabletInitialMovies)
         } else {
-            setInitialMoviesList(5)
+            setInitialMoviesList(TelephoneInitialMovies)
         }
     }
 
     useEffect(() => {
         setTimeout(() => {
-            window.addEventListener('resize', loadingInitialMovies)
+            window.addEventListener('resize', loadingInitialMovies())
         }, 1000)
     }, [])
 
@@ -34,12 +35,12 @@ export default function Movies({ isLoading, searchMovies, setIsCheckboxState, is
 
     function showMoreFilms() {
         const currentWidth = window.innerWidth
-        if (currentWidth > 1279) {
-            setInitialMoviesList(initialMoviesList + 4)
-        } else if (currentWidth > 1023) {
-            setInitialMoviesList(initialMoviesList + 3)
+        if (currentWidth > ComputerWidth) {
+            setInitialMoviesList(initialMoviesList + openMoviesOnComputer)
+        } else if (currentWidth > NotebookWidth) {
+            setInitialMoviesList(initialMoviesList + openMoviesOnNotebook)
         } else {
-            setInitialMoviesList(initialMoviesList + 2)
+            setInitialMoviesList(initialMoviesList + openMoviesOnTelephone)
         }
     }
 
@@ -47,12 +48,12 @@ export default function Movies({ isLoading, searchMovies, setIsCheckboxState, is
         <>
             <HeaderAuth />
             <main>
-                <SearchForm searchMovies={searchMovies} setIsCheckboxState={setIsCheckboxState} isCheckboxState={isCheckboxState} valueInput={valueInput} />
+                <SearchForm loadingInitialMovies={loadingInitialMovies} searchMovies={searchMovies} setIsCheckboxState={setIsCheckboxState} isCheckboxState={isCheckboxState} valueInput={valueInput} />
                 {isLoading
                     ?
                     <Preloader />
                     :
-                    <MoviesCardList movies={movies} showMoreFilms={showMoreFilms} initialMoviesList={initialMoviesList} savedMovies={savedMovies} handleLikeMovie={handleLikeMovie}onDeleteMovie={onDeleteMovie}/>}
+                    <MoviesCardList movies={movies} showMoreFilms={showMoreFilms} initialMoviesList={initialMoviesList} savedMovies={savedMovies} handleLikeMovie={handleLikeMovie} onDeleteMovie={onDeleteMovie} />}
 
             </main>
             <Footer />

@@ -5,25 +5,33 @@ import useFormValidation from '../../hooks/useFormValidation'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-export default function SearchForm({ searchMovies, isCheckboxState, setIsCheckboxState, valueInput }) {
+export default function SearchForm({ searchMovies, isCheckboxState, setIsCheckboxState, valueInput, loadingInitialMovies }) {
     const { values, handleChange, errors, isValid, setValue } = useFormValidation()
     const { pathname } = useLocation()
     function onSubmit(evt) {
         evt.preventDefault()
         searchMovies(values.film)
+        if (pathname === '/movies') {
+            loadingInitialMovies()
+        }
     }
+
+    // useEffect(() => {
+    //     if (values.film === '' && isCheckboxState === false) {
+    //         searchMovies('')
+    //     }
+    // }, [isCheckboxState, values.film, searchMovies])
 
     useEffect(() => {
         setValue("film", valueInput)
-    }, [setValue, valueInput])
-    
+    }, [pathname, setValue, valueInput])
+
     useEffect(() => {
-        if( pathname === '/saved-movies') {
-            setValue("film", '')
-            setIsCheckboxState(true)
+        if (pathname === '/saved-movies') {
+            setValue("film", values.film)
         }
-    }, [pathname, setValue, setIsCheckboxState])
-    
+    }, [pathname, setValue, values.film])
+
     return (
         <section className='searchForm'>
             <div className='searchForm__elements'>
@@ -34,7 +42,7 @@ export default function SearchForm({ searchMovies, isCheckboxState, setIsCheckbo
                         <button className={`searchForm__search-button ${!isValid ? 'searchForm__search-button_disabled' : ''}`} disabled={!isValid}>Найти</button>
                     </fieldset>
                 </form>
-                <FilterCheckbox isCheckboxState={isCheckboxState} setIsCheckboxState={setIsCheckboxState} />
+                <FilterCheckbox inputValue={values.film} searchMovies={searchMovies} isCheckboxState={isCheckboxState} setIsCheckboxState={setIsCheckboxState} />
             </div>
             <span className='searchForm__input-error'>{errors.film}</span>
         </section>
