@@ -18,7 +18,7 @@ import { durationShortMovies } from '../utils/constants'
 export default function App() {
     const [allMovies, setAllMovies] = useState([]) // все фильмы из апишки
     const [filteredMovies, setFilteredMovies] = useState([]) // отфильтрованные фильмы
-    const [savedFilteredMovies, setSavedFilteredMovies] = useState([]) // отфильтрованные фильмы
+    const [savedFilteredMovies, setSavedFilteredMovies] = useState([]) // отфильтрованные сохраненные фильмы
     const [isCheckboxState, setIsCheckboxState] = useState(false) // отслеживаем состояние чекбокса короткометражек
     const [isSavedCheckboxState, setIsSavedCheckboxState] = useState(false) // отслеживаем состояние чекбокса сохранённых короткометражек
     const [valueInput, setValueInput] = useState('') // строка из инпута поиска фильмов
@@ -44,6 +44,11 @@ export default function App() {
                     setCurrentUser(userData)
                     setSavedMovies(moviesData)
                     setLoggedIn(true)
+                    if (allMovies.length === 0) {
+                        setCheckLength(true)
+                    } else {
+                        setCheckLength(false)
+                    }
                 })
                 .catch((err) => {
                     console.error(err)
@@ -63,7 +68,7 @@ export default function App() {
             setCurrentUser({})
             setCheckLength(false)
         }
-    }, [loggedIn, jwt])
+    }, [loggedIn, jwt, allMovies.length])
 
     function handleLogin(email, password) {
         mainApi.login(email, password)
@@ -155,11 +160,6 @@ export default function App() {
             moviesApi.getMovies()
                 .then((movies) => {
                     setAllMovies(movies)
-                    if (allMovies.length === 0) {
-                        setCheckLength(true)
-                    } else {
-                        setCheckLength(false)
-                    }
                     filter(movies, inputValue, isCheckboxState)
                 })
                 .catch((err) => {
@@ -191,13 +191,15 @@ export default function App() {
     function searchSavedMovies(valueInputSavedMovies) {
         filterSavedMovies(savedMovies, valueInputSavedMovies, isSavedCheckboxState)
     }
-
+    
     useEffect(() => {
+        if(savedFilteredMovies.length === 0) {
+            setCheckLength(false)
+        }
         setValueInputSavedMovies(valueInputSavedMovies)
         setIsSavedCheckboxState(isSavedCheckboxState)
         filterSavedMovies(savedMovies, valueInputSavedMovies, isSavedCheckboxState)
-    }, [filterSavedMovies, savedMovies, valueInputSavedMovies, isSavedCheckboxState])
-
+    }, [filterSavedMovies, savedMovies, valueInputSavedMovies, isSavedCheckboxState, savedFilteredMovies.length])
 
     // лайк и удаление фильма
 
@@ -278,6 +280,8 @@ export default function App() {
                                     savedMovies={savedMovies}
                                     handleLikeMovie={handleLikeMovie}
                                     checkLength={checkLength}
+                                    setValueInputSavedMovies={setValueInputSavedMovies}
+                                    setIsSavedCheckboxState={setIsSavedCheckboxState}
                                 />
                             }
                             />
@@ -293,6 +297,8 @@ export default function App() {
                                     valueInput={valueInputSavedMovies}
                                     onDeleteMovie={onDeleteMovie}
                                     checkLength={checkLength}
+                                    setValueInputSavedMovies={setValueInputSavedMovies}
+                                    setIsSavedCheckboxState={setIsSavedCheckboxState}
                                 />
                             }
                             />

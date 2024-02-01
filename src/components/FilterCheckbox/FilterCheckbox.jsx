@@ -9,7 +9,7 @@ export default function FilterCheckbox({ isCheckboxState, setIsCheckboxState, se
             <label className='checkbox' htmlFor='checkbox'>
                 <input type="checkbox" className='checkbox__input' id='checkbox' checked={isCheckboxState} onChange={() => {
                     setIsCheckboxState(!isCheckboxState)
-                    searchMovies(inputValue)
+                    searchMovies(inputValue || '')
                     if (pathname === '/movies') {
                         localStorage.setItem('checkboxState', !isCheckboxState)
                     }

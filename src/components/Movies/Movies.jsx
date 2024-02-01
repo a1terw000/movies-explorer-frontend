@@ -7,7 +7,7 @@ import SearchForm from '../SearchForm/SearchForm'
 import './Movies.css'
 import { ComputerInitialMovies, ComputerWidth, NotebookInitialMovies, NotebookWidth, TabletInitialMovies, TelephoneInitialMovies, TelephoneWidth, openMoviesOnComputer, openMoviesOnNotebook, openMoviesOnTelephone } from '../../utils/constants'
 
-export default function Movies({ checkLength, isLoading, searchMovies, setIsCheckboxState, isCheckboxState, movies, valueInput, savedMovies, handleLikeMovie, onDeleteMovie }) {
+export default function Movies({ setIsSavedCheckboxState, setValueInputSavedMovies, checkLength, isLoading, searchMovies, setIsCheckboxState, isCheckboxState, movies, valueInput, savedMovies, handleLikeMovie, onDeleteMovie }) {
     const [initialMoviesList, setInitialMoviesList] = useState(0)
 
     function loadingInitialMovies() {
@@ -48,7 +48,7 @@ export default function Movies({ checkLength, isLoading, searchMovies, setIsChec
         <>
             <HeaderAuth />
             <main>
-                <SearchForm loadingInitialMovies={loadingInitialMovies} searchMovies={searchMovies} setIsCheckboxState={setIsCheckboxState} isCheckboxState={isCheckboxState} valueInput={valueInput} />
+                <SearchForm setIsSavedCheckboxState={setIsSavedCheckboxState} setValueInputSavedMovies={setValueInputSavedMovies} loadingInitialMovies={loadingInitialMovies} searchMovies={searchMovies} setIsCheckboxState={setIsCheckboxState} isCheckboxState={isCheckboxState} valueInput={valueInput} />
                 {isLoading
                     ?
                     <Preloader />

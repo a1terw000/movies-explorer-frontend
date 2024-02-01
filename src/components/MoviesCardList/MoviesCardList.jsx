@@ -4,12 +4,11 @@ import './MoviesCardList.css'
 
 export default function MoviesCardList({ checkLength, movies, showMoreFilms, initialMoviesList, savedMovies, handleLikeMovie, onDeleteMovie }) {
     const { pathname } = useLocation()
-
     return (
         <section className='moviesCardList'>
             <div className='moviesCardList__elements'>
                 <ul className={`moviesCardList__cards ${movies.length === 0 ? 'moviesCardList__cards_flex' : ''}`}>
-                    {movies.length === 0 && checkLength ?
+                    {movies.length === 0 && checkLength === false ?
                         <p className='moviesCardList__undefindMovies'>Ничего не найдено</p>
                         :
                         (pathname === '/movies')
