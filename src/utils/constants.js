@@ -35,3 +35,7 @@ export function getTimeFromMins(mins) {
         return mins + 'м'
     }
 };
+
+// максимальная длительность короткометражек
+
+export const durationShortMovies = 40

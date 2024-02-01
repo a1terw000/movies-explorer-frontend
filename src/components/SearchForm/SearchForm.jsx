@@ -16,12 +16,6 @@ export default function SearchForm({ searchMovies, isCheckboxState, setIsCheckbo
         }
     }
 
-    // useEffect(() => {
-    //     if (values.film === '' && isCheckboxState === false) {
-    //         searchMovies('')
-    //     }
-    // }, [isCheckboxState, values.film, searchMovies])
-
     useEffect(() => {
         setValue("film", valueInput)
     }, [pathname, setValue, valueInput])

@@ -13,6 +13,7 @@ import { useCallback, useEffect, useState } from 'react'
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 import Preloader from './Preloader/Preloader'
 import moviesApi from '../utils/MoviesApi'
+import { durationShortMovies } from '../utils/constants'
 
 export default function App() {
     const [allMovies, setAllMovies] = useState([]) // все фильмы из апишки
@@ -30,6 +31,7 @@ export default function App() {
     const [registerError, setRegisterError] = useState(false)
     const [loginError, setLoginError] = useState(false)
     const [profileError, setProfileError] = useState(false)
+    const [checkLength, setCheckLength] = useState(false)
     const navigate = useNavigate()
     const { pathname } = useLocation()
     const jwt = localStorage.getItem('jwt')
@@ -59,6 +61,7 @@ export default function App() {
             setIsSavedCheckboxState(false)
             setAllMovies([])
             setCurrentUser({})
+            setCheckLength(false)
         }
     }, [loggedIn, jwt])
 
@@ -120,7 +123,8 @@ export default function App() {
         setIsSavedCheckboxState(false)
         setAllMovies([])
         setCurrentUser({})
-        navigate('/')   
+        setCheckLength(false)
+        navigate('/')
     }
 
     // Поиск фильмов
@@ -133,16 +137,14 @@ export default function App() {
 
     function filterShortMovies(movies) {
         return movies.filter((movie) => {
-            return movie.duration < 40
+            return movie.duration < durationShortMovies
         })
     }
 
     const filter = useCallback((movies, inputValue, checkboxState) => {
-        console.log(isCheckboxState)
         localStorage.setItem('movies', JSON.stringify(movies))
         localStorage.setItem('inputValue', JSON.stringify(inputValue))
         localStorage.setItem('checkboxState', JSON.stringify(checkboxState))
-        console.log(JSON.parse(localStorage.getItem('checkboxState')))
         setFilteredMovies(isCheckboxState ? filterShortMovies(filterMovies(movies, inputValue)) : filterMovies(movies, inputValue))
         setValueInput(inputValue)
     }, [isCheckboxState])
@@ -153,6 +155,11 @@ export default function App() {
             moviesApi.getMovies()
                 .then((movies) => {
                     setAllMovies(movies)
+                    if (allMovies.length === 0) {
+                        setCheckLength(true)
+                    } else {
+                        setCheckLength(false)
+                    }
                     filter(movies, inputValue, isCheckboxState)
                 })
                 .catch((err) => {
@@ -270,6 +277,7 @@ export default function App() {
                                     valueInput={valueInput}
                                     savedMovies={savedMovies}
                                     handleLikeMovie={handleLikeMovie}
+                                    checkLength={checkLength}
                                 />
                             }
                             />
@@ -284,6 +292,7 @@ export default function App() {
                                     movies={savedFilteredMovies}
                                     valueInput={valueInputSavedMovies}
                                     onDeleteMovie={onDeleteMovie}
+                                    checkLength={checkLength}
                                 />
                             }
                             />

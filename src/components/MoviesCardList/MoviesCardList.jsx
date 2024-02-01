@@ -2,14 +2,14 @@ import { useLocation } from 'react-router-dom'
 import MoviesCard from '../MoviesCard/MoviesCard'
 import './MoviesCardList.css'
 
-export default function MoviesCardList({ movies, showMoreFilms, initialMoviesList, savedMovies, handleLikeMovie, onDeleteMovie }) {
+export default function MoviesCardList({ checkLength, movies, showMoreFilms, initialMoviesList, savedMovies, handleLikeMovie, onDeleteMovie }) {
     const { pathname } = useLocation()
 
     return (
         <section className='moviesCardList'>
             <div className='moviesCardList__elements'>
                 <ul className={`moviesCardList__cards ${movies.length === 0 ? 'moviesCardList__cards_flex' : ''}`}>
-                    {movies.length === 0 ?
+                    {movies.length === 0 && checkLength ?
                         <p className='moviesCardList__undefindMovies'>Ничего не найдено</p>
                         :
                         (pathname === '/movies')

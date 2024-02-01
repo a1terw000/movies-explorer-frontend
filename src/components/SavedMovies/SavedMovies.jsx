@@ -5,7 +5,7 @@ import Preloader from '../Preloader/Preloader'
 import SearchForm from '../SearchForm/SearchForm'
 import './SavedMovies.css'
 
-export default function SavedMovies({ movies, isLoading, searchMovies, setIsCheckboxState, isCheckboxState, valueInput, onDeleteMovie }) {
+export default function SavedMovies({ checkLength, movies, isLoading, searchMovies, setIsCheckboxState, isCheckboxState, valueInput, onDeleteMovie }) {
     return (
         <>
             <HeaderAuth />
@@ -15,7 +15,7 @@ export default function SavedMovies({ movies, isLoading, searchMovies, setIsChec
                     ?
                     <Preloader />
                     :
-                    <MoviesCardList movies={movies} onDeleteMovie={onDeleteMovie} />
+                    <MoviesCardList checkLength={checkLength} movies={movies} onDeleteMovie={onDeleteMovie} />
                 }
             </main>
             <Footer />

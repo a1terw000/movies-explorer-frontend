@@ -7,7 +7,7 @@ import SearchForm from '../SearchForm/SearchForm'
 import './Movies.css'
 import { ComputerInitialMovies, ComputerWidth, NotebookInitialMovies, NotebookWidth, TabletInitialMovies, TelephoneInitialMovies, TelephoneWidth, openMoviesOnComputer, openMoviesOnNotebook, openMoviesOnTelephone } from '../../utils/constants'
 
-export default function Movies({ isLoading, searchMovies, setIsCheckboxState, isCheckboxState, movies, valueInput, savedMovies, handleLikeMovie, onDeleteMovie }) {
+export default function Movies({ checkLength, isLoading, searchMovies, setIsCheckboxState, isCheckboxState, movies, valueInput, savedMovies, handleLikeMovie, onDeleteMovie }) {
     const [initialMoviesList, setInitialMoviesList] = useState(0)
 
     function loadingInitialMovies() {
@@ -25,7 +25,7 @@ export default function Movies({ isLoading, searchMovies, setIsCheckboxState, is
 
     useEffect(() => {
         setTimeout(() => {
-            window.addEventListener('resize', loadingInitialMovies())
+            window.addEventListener('resize', loadingInitialMovies)
         }, 1000)
     }, [])
 
@@ -53,7 +53,7 @@ export default function Movies({ isLoading, searchMovies, setIsCheckboxState, is
                     ?
                     <Preloader />
                     :
-                    <MoviesCardList movies={movies} showMoreFilms={showMoreFilms} initialMoviesList={initialMoviesList} savedMovies={savedMovies} handleLikeMovie={handleLikeMovie} onDeleteMovie={onDeleteMovie} />}
+                    <MoviesCardList checkLength={checkLength} movies={movies} showMoreFilms={showMoreFilms} initialMoviesList={initialMoviesList} savedMovies={savedMovies} handleLikeMovie={handleLikeMovie} onDeleteMovie={onDeleteMovie} />}
 
             </main>
             <Footer />
