@@ -5,7 +5,7 @@ import useFormValidation from '../../hooks/useFormValidation'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-export default function SearchForm({ setValueInputSavedMovies, searchMovies, isCheckboxState, setIsCheckboxState, valueInput, loadingInitialMovies }) {
+export default function SearchForm({ setIsSavedCheckboxState, setValueInputSavedMovies, searchMovies, isCheckboxState, setIsCheckboxState, valueInput, loadingInitialMovies }) {
     const { values, handleChange, errors, isValid, setValue } = useFormValidation()
     const { pathname } = useLocation()
     function onSubmit(evt) {
@@ -19,20 +19,14 @@ export default function SearchForm({ setValueInputSavedMovies, searchMovies, isC
     useEffect(() => {
         setValue("film", valueInput)
         setValueInputSavedMovies('')
-    }, [pathname, setValue, valueInput, setValueInputSavedMovies])
+        setIsSavedCheckboxState(false)
+    }, [pathname, setValue, valueInput, setValueInputSavedMovies, setIsSavedCheckboxState])
 
     useEffect(() => {
         if (pathname === '/saved-movies') {
             setValue("film", values.film)
-            setIsCheckboxState(false)
         }
     }, [pathname, setValue, values.film, setIsCheckboxState])
-
-    // useEffect(() => {
-    //     if (pathname === 'saved-movies') {
-    //         searchMovies(values.film)
-    //     }
-    // })
 
     return (
         <section className='searchForm'>
